@@ -1,4 +1,8 @@
+import { useState } from 'react'
+
 function Menu() {
+  const [disable, setDisable] = useState(true)
+
   return (
     <div className='menu_container'>
       <div className='menu--top'>
@@ -6,16 +10,24 @@ function Menu() {
       </div>
       <div className='menu--bottom'>
         <Button name='addBtn' text='ADD' />
-        <Button name='editBtn' text='EDIT' />
-        <Button name='delBtn' text='DELETE' />
+        <Button
+          name='editBtn'
+          text='EDIT'
+          checker={disable ? 'disabledBtn' : ''}
+        />
+        <Button
+          name='delBtn'
+          text='DELETE'
+          checker={disable ? 'disabledBtn' : ''}
+        />
       </div>
     </div>
   )
 }
 
-function Button({ name, text }) {
+function Button({ name, text, checker }) {
   return (
-    <button className={name}>
+    <button className={name + ' ' + checker}>
       <p>{text}</p>
     </button>
   )

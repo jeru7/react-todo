@@ -109,11 +109,16 @@ button.addBtn {
 }
 
 button.delBtn {
-  background-color: #6f5c5c;
+  background-color: var(--red-color);
 }
 
 button.editBtn {
-  background-color: #536566;
+  background-color: var(--mint-color);
+}
+
+.disabledBtn {
+  opacity: 50%;
+  pointer-events: none;
 }
 
 .menu--top,
