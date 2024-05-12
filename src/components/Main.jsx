@@ -9,18 +9,43 @@ function Main() {
 
   // checks if the task list is empty
   const [isEmpty, setIsEmpty] = useState(true)
+  const [toggleAdd, setToggleAdd] = useState(false)
+  const [toggleEdit, setToggleEdit] = useState(false)
 
   return (
-    <div className='main_container'>
-      <Display />
-      <Menu />
-      <AddModal />
-    </div>
+    <>
+      <div className='main_container'>
+        <Display />
+        <Menu />
+        <AddModal />
+      </div>
+    </>
   )
 }
 
 function AddModal() {
-  return <></>
+  return (
+    <>
+      <div className='addModal_container'>
+        <input
+          type='text'
+          className='text_input'
+          id='title'
+          placeholder='Title'
+        />
+        <textarea
+          className='text_input'
+          id='description'
+          placeholder='Description...'
+        />
+        <div className='buttons_container'>
+          <button id='cancelBtn'>Cancel</button>
+          <button id='addBtn'>Add</button>
+        </div>
+      </div>
+      <div className='modal_overlay'></div>
+    </>
+  )
 }
 
 export default Main

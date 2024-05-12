@@ -27,7 +27,6 @@ body {
 
 .main_page {
   height: 100vh;
-  padding: 32px;
 }
 
 /* main */
@@ -36,6 +35,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  padding-top: 32px;
 }
 
 /* display container (task list display) */
@@ -125,6 +125,75 @@ button.editBtn {
 .menu--bottom {
   background-color: var(--secondary-black);
   border-radius: 16px;
+}
+
+/* overlay */
+.modal_overlay {
+  background-color: #585757;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* add modal */
+.addModal_container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 32px 16px;
+  background-color: var(--black-color);
+  border-radius: 16px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 350px;
+  z-index: 2;
+}
+
+.text_input {
+  font-size: 24px;
+  font-family: sans-serif;
+  border: 1px solid var(--white-color);
+  border-radius: 8px;
+  background-color: var(--black-color);
+  padding: 12px 8px;
+  color: var(--white-color);
+}
+
+#description {
+  height: 200px;
+  resize: none;
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons_container button {
+  height: 48px;
+  width: 120px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--white-color);
+  font-family: inherit;
+}
+
+.buttons_container #cancelBtn {
+  background-color: var(--red-color);
+}
+
+.buttons_container #addBtn {
+  background-color: var(--mint-color);
 }
 
 /* footer */
