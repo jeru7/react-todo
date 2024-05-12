@@ -18,6 +18,7 @@ function Main() {
         <Display />
         <Menu />
         <AddModal />
+        <EditModal />
       </div>
     </>
   )
@@ -41,6 +42,31 @@ function AddModal() {
         <div className='buttons_container'>
           <button id='cancelBtn'>Cancel</button>
           <button id='addBtn'>Add</button>
+        </div>
+      </div>
+      <div className='modal_overlay'></div>
+    </>
+  )
+}
+
+function EditModal() {
+  return (
+    <>
+      <div className='addModal_container'>
+        <input
+          type='text'
+          className='text_input'
+          id='title'
+          placeholder='Example Title'
+        />
+        <textarea
+          className='text_input'
+          id='description'
+          placeholder='Example Description...'
+        />
+        <div className='buttons_container'>
+          <button id='cancelBtn'>Cancel</button>
+          <button id='editBtn'>Edit</button>
         </div>
       </div>
       <div className='modal_overlay'></div>

@@ -192,7 +192,8 @@ button.editBtn {
   background-color: var(--red-color);
 }
 
-.buttons_container #addBtn {
+.buttons_container #addBtn,
+.buttons_container #editBtn {
   background-color: var(--mint-color);
 }
 
