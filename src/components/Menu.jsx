@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function Menu() {
+function Menu({ handleToggleAdd }) {
   const [disable, setDisable] = useState(true)
 
   return (
@@ -9,7 +9,7 @@ function Menu() {
         <p>TODO APP</p>
       </div>
       <div className='menu--bottom'>
-        <Button name='addBtn' text='ADD' />
+        <Button name='addBtn' text='ADD' onClick={handleToggleAdd} />
         <Button
           name='editBtn'
           text='EDIT'
@@ -25,9 +25,9 @@ function Menu() {
   )
 }
 
-function Button({ name, text, checker }) {
+function Button({ name, text, checker, onClick }) {
   return (
-    <button className={name + ' ' + checker}>
+    <button className={name + ' ' + checker} onClick={onClick}>
       <p>{text}</p>
     </button>
   )

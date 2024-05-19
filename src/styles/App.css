@@ -31,9 +31,11 @@ body {
 
 /* main */
 .main_container {
-  height: 500px;
+  height: 700px;
   display: flex;
+  padding: 64px;
   align-items: center;
+  gap: 48px;
   justify-content: space-evenly;
   padding-top: 32px;
 }
@@ -41,7 +43,7 @@ body {
 /* display container (task list display) */
 .display_container {
   height: 100%;
-  width: 350px;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,11 +55,11 @@ body {
 
 /* menu container */
 .menu_container {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 28px;
   height: 100%;
-  width: 350px;
 }
 
 .menu--top {
@@ -153,7 +155,7 @@ button.editBtn {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 400px;
-  width: 350px;
+  width: 550px;
   z-index: 2;
 }
 

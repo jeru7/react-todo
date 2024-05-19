@@ -12,19 +12,23 @@ function Main() {
   const [toggleAdd, setToggleAdd] = useState(false)
   const [toggleEdit, setToggleEdit] = useState(false)
 
+  const handleToggleAdd = () => {
+    setToggleAdd((prev) => !prev)
+  }
+
   return (
     <>
       <div className='main_container'>
         <Display />
-        <Menu />
-        <AddModal />
-        <EditModal />
+        <Menu handleToggleAdd={handleToggleAdd} />
+        {toggleAdd && <AddModal handleToggleAdd={handleToggleAdd} />}
+        {/* <EditModal /> */}
       </div>
     </>
   )
 }
 
-function AddModal() {
+function AddModal({ handleToggleAdd }) {
   return (
     <>
       <div className='addModal_container'>
@@ -40,7 +44,9 @@ function AddModal() {
           placeholder='Description...'
         />
         <div className='buttons_container'>
-          <button id='cancelBtn'>Cancel</button>
+          <button id='cancelBtn' onClick={handleToggleAdd}>
+            Cancel
+          </button>
           <button id='addBtn'>Add</button>
         </div>
       </div>
