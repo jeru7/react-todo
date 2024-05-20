@@ -1,12 +1,8 @@
 import Menu from './Menu.jsx'
 import Display from './Display.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function Main() {
-  // TODO: add modal
-
-  // TODO: task object
-
   // states: manage task
   const [tasks, setTasks] = useState([])
 
@@ -14,9 +10,39 @@ function Main() {
   const [toggleAdd, setToggleAdd] = useState(false)
   const [toggleEdit, setToggleEdit] = useState(false)
 
+  // states: icon visibility
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+
+  // states: task tracker
+  const [currentTask, setCurrentTask] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(null)
+
+  // handler: edit task
+  const editHandler = (editedTask) => {
+    const updatedTasks = [...tasks]
+    updatedTasks[currentIndex] = editedTask
+    setTasks(updatedTasks)
+    setToggleEdit(false)
+  }
+
+  // handler: delete task
+  const deleteHandler = (taskIndex) => {
+    const newList = tasks.filter((_, index) => index !== taskIndex)
+    setTasks(newList)
+    setShowDelete(false)
+  }
+
   // handler: add toggle
   const handleToggleAdd = () => {
-    setToggleAdd((prev) => !prev)
+    setToggleAdd((prevBool) => !prevBool)
+  }
+
+  // handler: edit toggle
+  const handleToggleEdit = (task, index) => {
+    setCurrentTask(task)
+    setCurrentIndex(index)
+    setToggleEdit((prevBool) => !prevBool)
   }
 
   // handler: add task
@@ -24,18 +50,48 @@ function Main() {
     setTasks((prevTask) => [...prevTask, task])
   }
 
+  // handler: toggle delete icon
+  const handleShowDelete = () => {
+    setShowDelete((prevBool) => !prevBool)
+  }
+
+  // handler: toggle edit icon
+  const handleShowEdit = () => {
+    setShowEdit((prevBool) => !prevBool)
+  }
+
   return (
     <>
       <div className='main_container'>
-        <Display tasks={tasks} isEmpty={tasks.length === 0} />
-        <Menu handleToggleAdd={handleToggleAdd} isEmpty={tasks.length === 0} />
+        <Display
+          tasks={tasks}
+          isEmpty={tasks.length === 0}
+          showDelete={showDelete}
+          showEdit={showEdit}
+          handleToggleEdit={handleToggleEdit}
+          deleteHandler={deleteHandler}
+        />
+        <Menu
+          handleToggleAdd={handleToggleAdd}
+          isEmpty={tasks.length === 0}
+          handleShowDelete={handleShowDelete}
+          handleShowEdit={handleShowEdit}
+          showDelete={showDelete}
+          showEdit={showEdit}
+        />
         {toggleAdd && (
           <AddModal
             handleToggleAdd={handleToggleAdd}
             handleAddTask={handleAddTask}
           />
         )}
-        {/* <EditModal /> */}
+        {toggleEdit && (
+          <EditModal
+            currentTask={currentTask}
+            handleToggleEdit={handleToggleEdit}
+            editHandler={editHandler}
+          />
+        )}
       </div>
     </>
   )
@@ -86,7 +142,20 @@ function AddModal({ handleToggleAdd, handleAddTask }) {
   )
 }
 
-function EditModal() {
+function EditModal({ currentTask, handleToggleEdit, editHandler }) {
+  const [title, setTitle] = useState(currentTask.title)
+  const [description, setDescription] = useState(currentTask.description)
+
+  useEffect(() => {
+    setTitle(currentTask.title)
+    setDescription(currentTask.description)
+  }, [currentTask])
+
+  const handleEdit = () => {
+    if (title && description) {
+      editHandler({ title, description })
+    }
+  }
   return (
     <>
       <div className='addModal_container'>
@@ -95,15 +164,23 @@ function EditModal() {
           className='text_input'
           id='title'
           placeholder='Example Title'
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
           className='text_input'
           id='description'
           placeholder='Example Description...'
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <div className='buttons_container'>
-          <button id='cancelBtn'>Cancel</button>
-          <button id='editBtn'>Edit</button>
+          <button id='cancelBtn' onClick={handleToggleEdit}>
+            Cancel
+          </button>
+          <button id='editBtn' onClick={handleEdit}>
+            Edit
+          </button>
         </div>
       </div>
       <div className='modal_overlay'></div>

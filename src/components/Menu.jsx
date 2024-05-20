@@ -1,6 +1,13 @@
 import { useState } from 'react'
 
-function Menu({ handleToggleAdd, isEmpty }) {
+function Menu({
+  handleToggleAdd,
+  isEmpty,
+  handleShowEdit,
+  handleShowDelete,
+  showEdit,
+  showDelete,
+}) {
   return (
     <div className='menu_container'>
       <div className='menu--top'>
@@ -11,21 +18,27 @@ function Menu({ handleToggleAdd, isEmpty }) {
         <Button
           name='editBtn'
           text='EDIT'
-          checker={isEmpty ? 'disabledBtn' : ''}
+          disabled={isEmpty || showDelete}
+          onClick={handleShowEdit}
         />
         <Button
           name='delBtn'
           text='DELETE'
-          checker={isEmpty ? 'disabledBtn' : ''}
+          disabled={isEmpty || showEdit}
+          onClick={handleShowDelete}
         />
       </div>
     </div>
   )
 }
 
-function Button({ name, text, checker, onClick }) {
+function Button({ name, text, onClick, disabled }) {
   return (
-    <button className={name + ' ' + checker} onClick={onClick}>
+    <button
+      className={`${name} ${disabled ? 'disabledBtn' : ''}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
       <p>{text}</p>
     </button>
   )
