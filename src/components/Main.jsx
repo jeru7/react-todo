@@ -33,7 +33,6 @@ function Main() {
   const deleteHandler = (taskIndex) => {
     const newList = tasks.filter((_, index) => index !== taskIndex)
     setTasks(newList)
-    setShowDelete(false)
   }
 
   useEffect(() => {
