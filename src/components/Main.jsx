@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react'
 
 function Main() {
   // states: manage task
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks')
+    return savedTasks ? JSON.parse(savedTasks) : []
+  })
 
   // states: modals
   const [toggleAdd, setToggleAdd] = useState(false)
@@ -32,6 +35,10 @@ function Main() {
     setTasks(newList)
     setShowDelete(false)
   }
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   // handler: add toggle
   const handleToggleAdd = () => {
