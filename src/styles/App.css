@@ -31,13 +31,12 @@ body {
 
 /* main */
 .main_container {
-  height: 700px;
+  height: 100%;
   display: flex;
   padding: 64px;
   align-items: center;
   gap: 48px;
   justify-content: space-evenly;
-  padding-top: 32px;
 }
 
 /* display container (task list display) */
