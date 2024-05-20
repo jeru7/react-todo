@@ -10,9 +10,6 @@ function Main() {
   // states: manage task
   const [tasks, setTasks] = useState([])
 
-  // states: tasklist states
-  const [isEmpty, setIsEmpty] = useState(true)
-
   // states: modals
   const [toggleAdd, setToggleAdd] = useState(false)
   const [toggleEdit, setToggleEdit] = useState(false)
@@ -30,8 +27,8 @@ function Main() {
   return (
     <>
       <div className='main_container'>
-        <Display tasks={tasks} />
-        <Menu handleToggleAdd={handleToggleAdd} />
+        <Display tasks={tasks} isEmpty={tasks.length === 0} />
+        <Menu handleToggleAdd={handleToggleAdd} isEmpty={tasks.length === 0} />
         {toggleAdd && (
           <AddModal
             handleToggleAdd={handleToggleAdd}
@@ -48,10 +45,11 @@ function AddModal({ handleToggleAdd, handleAddTask }) {
   // states: input
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [checked, setChecked] = useState(false)
 
   const handleAdd = () => {
     if (title && description) {
-      handleAddTask({ title, description })
+      handleAddTask({ title, description, checked })
       handleToggleAdd()
     }
   }

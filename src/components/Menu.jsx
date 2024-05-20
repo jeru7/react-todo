@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-function Menu({ handleToggleAdd }) {
-  const [disable, setDisable] = useState(true)
-
+function Menu({ handleToggleAdd, isEmpty }) {
   return (
     <div className='menu_container'>
       <div className='menu--top'>
@@ -13,12 +11,12 @@ function Menu({ handleToggleAdd }) {
         <Button
           name='editBtn'
           text='EDIT'
-          checker={disable ? 'disabledBtn' : ''}
+          checker={isEmpty ? 'disabledBtn' : ''}
         />
         <Button
           name='delBtn'
           text='DELETE'
-          checker={disable ? 'disabledBtn' : ''}
+          checker={isEmpty ? 'disabledBtn' : ''}
         />
       </div>
     </div>
