@@ -79,6 +79,7 @@ function Main() {
           showEdit={showEdit}
           handleToggleEdit={handleToggleEdit}
           deleteHandler={deleteHandler}
+          setTasks={setTasks}
         />
         <Menu
           handleToggleAdd={handleToggleAdd}
@@ -119,6 +120,14 @@ function AddModal({ handleToggleAdd, handleAddTask }) {
     }
   }
 
+  const handleTitleChange = (event) => {
+    const currentValue = event.target.value
+    if (currentValue.length > 16) {
+      return
+    }
+    setTitle(currentValue)
+  }
+
   return (
     <>
       <div className='addModal_container'>
@@ -128,7 +137,7 @@ function AddModal({ handleToggleAdd, handleAddTask }) {
           id='title'
           placeholder='Title'
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => handleTitleChange(e)}
         />
         <textarea
           className='text_input'
@@ -165,6 +174,15 @@ function EditModal({ currentTask, handleToggleEdit, editHandler }) {
       editHandler({ title, description })
     }
   }
+
+  const handleTitleChange = (event) => {
+    const currentValue = event.target.value
+    if (currentValue.length > 16) {
+      return
+    }
+    setTitle(currentValue)
+  }
+
   return (
     <>
       <div className='addModal_container'>
@@ -174,7 +192,7 @@ function EditModal({ currentTask, handleToggleEdit, editHandler }) {
           id='title'
           placeholder='Example Title'
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => handleTitleChange(e)}
         />
         <textarea
           className='text_input'
