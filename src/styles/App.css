@@ -175,6 +175,7 @@ body {
 .menu--bottom button p {
   font-size: 36px;
   font-family: var(--main-font);
+  color: var(--white-color);
 }
 
 button.addBtn {
