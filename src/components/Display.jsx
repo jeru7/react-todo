@@ -10,6 +10,7 @@ function Display({
   showDelete,
   handleToggleEdit,
   deleteHandler,
+  setTasks,
 }) {
   const containerStyle = isEmpty
     ? {
@@ -17,6 +18,16 @@ function Display({
         alignItems: 'center',
       }
     : {}
+
+  const toggleChecker = (index) => {
+    const newList = tasks.map((task, i) => {
+      if (i === index) {
+        return { ...task, checked: !task.checked }
+      }
+      return task
+    })
+    setTasks(newList)
+  }
 
   return (
     <div className='display_container' style={containerStyle}>
@@ -27,9 +38,22 @@ function Display({
           {tasks.map((task, index) => (
             <li className='tasks' key={index}>
               <div className='task--details'>
-                <FontAwesomeIcon icon={faSquare} className='checkboxIcon' />
-                <p className='taskTitle'>{task.title}</p>
-                <p className='taskDesc'>{task.description}</p>
+                {task.checked ? (
+                  <FontAwesomeIcon
+                    icon={faSquareCheck}
+                    className='checkboxIcon'
+                    onClick={() => toggleChecker(index)}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faSquare}
+                    className='checkboxIcon'
+                    onClick={() => toggleChecker(index)}
+                  />
+                )}
+                <p className='taskTitle' title={task.description}>
+                  {task.title}
+                </p>
               </div>
               <div className='task--buttons'>
                 {showDelete ? (

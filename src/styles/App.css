@@ -35,8 +35,8 @@ body {
   display: flex;
   padding: 64px;
   align-items: center;
-  gap: 48px;
-  justify-content: space-evenly;
+  gap: 8px;
+  justify-content: center;
 }
 
 /* display container (task list display) */
@@ -58,6 +58,11 @@ body {
   gap: 8px;
 }
 
+.checkboxIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .tasks {
   display: flex;
   border: 2px solid var(--black-color);
@@ -76,8 +81,27 @@ body {
   gap: 16px;
 }
 
-.taskDesc {
-  color: #585757;
+.taskTitle {
+  width: 80%;
+  overflow-x: auto;
+}
+
+.taskTitle:hover {
+  cursor: default;
+}
+
+.taskTitle::-webkit-scrollbar {
+  height: 4px;
+}
+
+.taskTitle::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 8px;
+}
+
+.taskTitle::-webkit-scrollbar-thumb {
+  background: var(--black-color);
+  border-radius: 10px;
 }
 
 .editIcon {
@@ -105,7 +129,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
   height: 100%;
 }
 
@@ -113,7 +137,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25%;
+  height: 20%;
   color: var(--white-color);
 }
 
@@ -128,7 +152,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  height: 75%;
+  height: 100%;
   padding: 48px;
 }
 
@@ -194,7 +218,7 @@ button.editBtn {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  padding: 32px 16px;
+  padding: 24px;
   background-color: var(--black-color);
   border-radius: 16px;
   position: fixed;
@@ -270,4 +294,132 @@ button.editBtn {
 .user-icon {
   color: var(--black-color);
   font-size: 32px;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 900px) {
+  .menu--top p {
+    font-size: 48px;
+  }
+
+  .display_container p {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .main_container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    gap: 16px;
+    flex-direction: column-reverse;
+    padding-bottom: 24px;
+  }
+
+  .menu_container {
+    flex: 0;
+    height: 25%;
+    width: 100%;
+  }
+
+  .menu--top {
+    height: 80px;
+    border-radius: 0;
+  }
+
+  .menu--top p {
+    font-size: 36px;
+  }
+
+  .menu--bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 120px;
+    padding: 16px 12px;
+    align-self: center;
+  }
+
+  .menu--bottom button p {
+    font-size: 24px;
+  }
+
+  .menu--bottom,
+  .display_container {
+    width: 90%;
+  }
+
+  .footer_container {
+    background-color: var(--black-color);
+  }
+
+  .footer--user_display {
+    color: var(--white-color);
+  }
+
+  .user-icon {
+    color: var(--white-color);
+  }
+
+  .addModal_container {
+    padding: 16px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 450px;
+    z-index: 2;
+  }
+
+  .text_input {
+    font-size: 16px;
+  }
+
+  #description {
+    height: 120px;
+  }
+
+  .buttons_container button {
+    height: 48px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .menu--bottom {
+    height: 90px;
+    padding: 16px 8px;
+  }
+
+  .menu--bottom button p {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .addModal_container {
+    padding: 16px;
+    height: 350px;
+    width: 400px;
+  }
+
+  #description {
+    height: 180px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .addModal_container {
+    padding: 16px;
+    height: 350px;
+    width: 350px;
+  }
+
+  #description {
+    height: 180px;
+  }
 }
